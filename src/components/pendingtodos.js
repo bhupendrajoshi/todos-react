@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import {completeTodo} from '../actions/completetodo';
 
 export class PendingTodos extends Component {
   render() {
-    const {pendingTodos} = this.props;
+    const {pendingTodos, completeTodo} = this.props;
     return (
       <div>
         <h1>Pending todos</h1>
-        <ol>
+        <table>
         {pendingTodos.map(todo => (
-            <li key={todo.id}>{todo.title}</li>
+            <tr key={todo.id}>
+                <td>{todo.title}</td>
+                
+                <td><button onClick={() => completeTodo(todo.id)}>Complete</button></td>
+            </tr>
         ))}
-        </ol>
+        </table>
       </div>
     )
   }
@@ -23,4 +28,9 @@ function mapStateToProps({ todos }) {
   }
 }
 
-export default connect(mapStateToProps)(PendingTodos);
+function mapDispatchToProps(dispatch) {
+  return {
+    completeTodo: (id) => dispatch(completeTodo(id))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PendingTodos);

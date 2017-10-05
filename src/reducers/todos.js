@@ -1,4 +1,5 @@
 import { ADD_TODO } from '../actions/addtodo';
+import { COMPLETE_TODO } from '../actions/completetodo';
 
 const initialTodos = [
     {id: 1, title: "Do react", status: 0},
@@ -16,6 +17,8 @@ export default function todos(state = initialTodos, action) {
                 status: 0
             };
             return [ ...state, todo];
+        case COMPLETE_TODO:
+            return state.map(todo => (todo.id === action.payload) ? {...todo, status: 1} : todo);
         default:
             return state;
     }
