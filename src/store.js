@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, compose } from 'redux';
 import { combineReducers } from 'redux';
 
 import todos from './reducers/todos';
