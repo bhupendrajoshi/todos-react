@@ -1,26 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import PendingTodos from './pendingtodos';
+import AddTodo from './addtodo';
 
 export class Home extends Component {
 
   render() {
-    const {pendingTodos} = this.props;
     return (
       <div>
-        <ol>
-        {pendingTodos.map(todo => (
-            <li key={todo.id}>{todo.title}</li>
-        ))}
-        </ol>
+        <PendingTodos />
+        <AddTodo />
       </div>
     )
   }
 }
 
-function mapStateToProps({ todos }) {
-    return {
-      pendingTodos: todos.filter(todo => todo.status === 0),
-    }
-  }
-  
-  export default connect(mapStateToProps)(Home);
+export default Home;
